@@ -6,7 +6,7 @@
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
         <title>gsplat.rendering - gsplat documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=302659d7" />
     
@@ -310,22 +310,22 @@
         </div>
         <article role="main" id="furo-main-content">
           <h1>Source code for gsplat.rendering</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
 
-<span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">import</span> <span class="nn">torch.distributed</span>
-<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">Tensor</span>
-<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Literal</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.distributed</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torch</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tensor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing_extensions</span><span class="w"> </span><span class="kn">import</span> <span class="n">Literal</span>
 
-<span class="kn">from</span> <span class="nn">.cuda._wrapper</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.cuda._wrapper</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">fully_fused_projection</span><span class="p">,</span>
     <span class="n">isect_offset_encode</span><span class="p">,</span>
     <span class="n">isect_tiles</span><span class="p">,</span>
     <span class="n">rasterize_to_pixels</span><span class="p">,</span>
     <span class="n">spherical_harmonics</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">.distributed</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.distributed</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">all_gather_int32</span><span class="p">,</span>
     <span class="n">all_gather_tensor_list</span><span class="p">,</span>
     <span class="n">all_to_all_int32</span><span class="p">,</span>
@@ -335,7 +335,7 @@
 
 <div class="viewcode-block" id="rasterization">
 <a class="viewcode-back" href="../../apis/rasterization.html#gsplat.rasterization">[docs]</a>
-<span class="k">def</span> <span class="nf">rasterization</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">rasterization</span><span class="p">(</span>
     <span class="n">means</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>  <span class="c1"># [N, 3]</span>
     <span class="n">quats</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>  <span class="c1"># [N, 4]</span>
     <span class="n">scales</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>  <span class="c1"># [N, 3]</span>
@@ -892,7 +892,7 @@
 
 
 
-<span class="k">def</span> <span class="nf">_rasterization</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_rasterization</span><span class="p">(</span>
     <span class="n">means</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>  <span class="c1"># [N, 3]</span>
     <span class="n">quats</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>  <span class="c1"># [N, 4]</span>
     <span class="n">scales</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>  <span class="c1"># [N, 3]</span>
@@ -928,7 +928,7 @@
 <span class="sd">        Compared to rasterization(), this function does not support some arguments such as</span>
 <span class="sd">        `packed`, `sparse_grad` and `absgrad`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">gsplat.cuda._torch_impl</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">gsplat.cuda._torch_impl</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
         <span class="n">_fully_fused_projection</span><span class="p">,</span>
         <span class="n">_quat_scale_to_covar_preci</span><span class="p">,</span>
         <span class="n">_rasterize_to_pixels</span><span class="p">,</span>
@@ -1110,7 +1110,7 @@
 
 <div class="viewcode-block" id="rasterization_legacy_wrapper">
 <a class="viewcode-back" href="../../apis/utils.html#gsplat.rasterization_legacy_wrapper">[docs]</a>
-<span class="k">def</span> <span class="nf">rasterization_legacy_wrapper</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">rasterization_legacy_wrapper</span><span class="p">(</span>
     <span class="n">means</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>  <span class="c1"># [N, 3]</span>
     <span class="n">quats</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>  <span class="c1"># [N, 4]</span>
     <span class="n">scales</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>  <span class="c1"># [N, 3]</span>
@@ -1134,7 +1134,7 @@
 <span class="sd">        the intermidiate variables, and only return an empty dict.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">gsplat.cuda_legacy._wrapper</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">gsplat.cuda_legacy._wrapper</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
         <span class="n">project_gaussians</span><span class="p">,</span>
         <span class="n">rasterize_gaussians</span><span class="p">,</span>
         <span class="n">spherical_harmonics</span><span class="p">,</span>
@@ -1203,7 +1203,7 @@
 
 <div class="viewcode-block" id="rasterization_inria_wrapper">
 <a class="viewcode-back" href="../../apis/utils.html#gsplat.rasterization_inria_wrapper">[docs]</a>
-<span class="k">def</span> <span class="nf">rasterization_inria_wrapper</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">rasterization_inria_wrapper</span><span class="p">(</span>
     <span class="n">means</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>  <span class="c1"># [N, 3]</span>
     <span class="n">quats</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>  <span class="c1"># [N, 4]</span>
     <span class="n">scales</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>  <span class="c1"># [N, 3]</span>
@@ -1232,12 +1232,12 @@
 <span class="sd">        https://github.com/graphdeco-inria/diff-gaussian-rasterization</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">diff_gaussian_rasterization</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">diff_gaussian_rasterization</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
         <span class="n">GaussianRasterizationSettings</span><span class="p">,</span>
         <span class="n">GaussianRasterizer</span><span class="p">,</span>
     <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_getProjectionMatrix</span><span class="p">(</span><span class="n">znear</span><span class="p">,</span> <span class="n">zfar</span><span class="p">,</span> <span class="n">fovX</span><span class="p">,</span> <span class="n">fovY</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s2">&quot;cuda&quot;</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_getProjectionMatrix</span><span class="p">(</span><span class="n">znear</span><span class="p">,</span> <span class="n">zfar</span><span class="p">,</span> <span class="n">fovX</span><span class="p">,</span> <span class="n">fovY</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s2">&quot;cuda&quot;</span><span class="p">):</span>
         <span class="n">tanHalfFovY</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">tan</span><span class="p">((</span><span class="n">fovY</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
         <span class="n">tanHalfFovX</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">tan</span><span class="p">((</span><span class="n">fovX</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
 
